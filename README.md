@@ -19,6 +19,6 @@ max_decays_M1.csv and max_decays_M2.csv were generated after running Model-Fitti
 
 The IBL model was developed initialy by Palvi Aggarwal and Shova Kuikel and later on incremented to include model-fitting and model-tracing by Maria José Ferreira.
 
-confusionMatric.py contains functions to generate confusion matrixes for both models in different settings.
+confusionMatric.py contains functions to generate confusion matrixes and Learning curves for both models in different settings.
 
 tracingModel1.py and tracingModel2.pt have the developped IBL model.
