@@ -1,0 +1,141 @@
+---
+title: "Phishing Training Task"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+```{r Libraries}
+library(here)
+library(dplyr)
+library(tidyverse)
+library(ggplot2)
+library(ggrepel)
+library(xtable)
+
+library(gmodels)
+library(DescTools)
+library(qqplotr)
+library(dunn.test)
+library(rstatix)
+
+library(afex); 
+library(parallel); 
+library(car); 
+library(emmeans)
+library(lme4)
+library(Matrix)
+library(coin)
+library(readxl)
+
+
+
+here()
+```
+
+```{r LoadData}
+
+syncRate_data_M1 <- read.csv(file =here("Data", "Phishing", "MaxSyncRate_Fitting_Data_M1.csv"), na="NULL")
+syncRate_data_M2 <- read.csv(file =here("Data", "Phishing", "MaxSyncRate_Fitting_Data_M2.csv"), na="NULL")
+
+
+```
+
+```{r SyncRate}
+
+### M1
+
+# Assuming 'userID' is the column containing participant IDs
+syncRate_data_M1 %>%
+  group_by(UserID) %>%
+  summarize(
+    min_SyncRate = min(SyncRate_Value),
+    decay_min = Decay_Value[which.min(SyncRate_Value)],
+    
+    max_SyncRate = max(SyncRate_Value),
+    decay_max = Decay_Value[which(SyncRate_Value == max(SyncRate_Value))[length(which(SyncRate_Value == max(SyncRate_Value)))]]
+  )
+
+# Count decays with min and max SyncRate for each participant
+syncRate_data_M1 %>%
+  group_by(UserID) %>%
+  summarize(
+    count_min_SyncRate = sum(SyncRate_Value == min(SyncRate_Value)),
+    count_max_SyncRate = sum(SyncRate_Value == max(SyncRate_Value))
+  )
+
+
+
+### M2
+
+syncRate_data_M2 %>%
+  group_by(UserID) %>%
+  summarize(
+    min_SyncRate = min(SyncRate_Value),
+    decay_min = Decay_Value[which.min(SyncRate_Value)],
+    max_SyncRate = max(SyncRate_Value),
+    decay_max = Decay_Value[which(SyncRate_Value == max(SyncRate_Value))[length(which(SyncRate_Value == max(SyncRate_Value)))]]
+  )
+
+# Count decays with min and max SyncRate for each participant
+syncRate_data_M2 %>%
+  group_by(UserID) %>%
+  summarize(
+    count_min_SyncRate = sum(SyncRate_Value == min(SyncRate_Value)),
+    count_max_SyncRate = sum(SyncRate_Value == max(SyncRate_Value))
+  )
+
+
+```
+
+
+
+```{r dataSyncRate_Only_MaxDecayChoice}
+
+### M1
+
+# Filter to include only rows with maximum SyncRate for each participant
+get_Max_SyncRate_rows_M1 <- syncRate_data_M1 %>%
+  group_by(UserID) %>%
+  filter(SyncRate_Value == max(SyncRate_Value))
+
+
+# Find the maximum decay value for the maximum SyncRate for each participant
+max_decay_for_max_SyncRate_M1 <- get_Max_SyncRate_rows_M1 %>%
+  group_by(UserID) %>%
+ arrange(desc(Decay_Value)) %>%
+  slice(1)
+
+head(max_decay_for_max_SyncRate_M1)
+
+
+### M2
+
+get_Max_SyncRate_rows_M2 <- syncRate_data_M2 %>%
+  group_by(UserID) %>%
+  filter(SyncRate_Value == max(SyncRate_Value))
+
+
+# Find the maximum decay value for the maximum SyncRate for each participant
+max_decay_for_max_SyncRate_M2 <- get_Max_SyncRate_rows_M2 %>%
+  group_by(UserID) %>%
+  arrange(desc(Decay_Value)) %>%
+  slice(1)
+
+
+
+head(max_decay_for_max_SyncRate_M2)
+
+
+```
+
+
+```{r SaveMaxDecay}
+# Saving the selected data frame to a CSV file
+
+write.csv(max_decay_for_max_SyncRate_M1, "./max_decays_M1.csv", row.names = FALSE)
+write.csv(max_decay_for_max_SyncRate_M2, "./max_decays_M2.csv", row.names = FALSE)
+
+```

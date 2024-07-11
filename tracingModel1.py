@@ -317,7 +317,8 @@ def StartTracing(experimentFile, tracing, decay, best_decayFile, fitting):
 
 
   ######## Run the line below only when doing model-fitting
-  #calculateFittingMetric(decay_data, tracing, fitting)
+  if fitting:
+    calculateFittingMetric(decay_data, tracing, fitting)
 
 
 def WriteDataToDictionary(AgentName,freqBR, userID, userPhase, userTrial, userEmailID, groundTruth, choiceModelMade, 
@@ -408,6 +409,19 @@ def checkIfFileExists(csv_file_name, df_to_append, desired_header):
     updated_df.to_csv(os.path.join(file_path, csv_file_name), mode='a', index=False, header=False)
 
 
+def runModelFitting(experimentFile):
+
+  start = 0.10
+  end = 3.00
+  step = 0.01
+  d_values = [round(start + i * step, 2) for i in range(int((end - start) / step) + 1)]
+
+  try:
+    for d_value in d_values:
+      StartTracing(experimentFile, tracing=True, decay=d_value, best_decayFile=[], fitting=True)
+  except Exception as e:
+    print(f"Error retrieving StartTracing for each decay: {e}") 
+
 if __name__ == "__main__":
 
 
@@ -428,17 +442,6 @@ if __name__ == "__main__":
 
 
   ## Uncomment to run model-fitting with model-tracing, ideally comment the StartTracing above
-  """ decay_data = []
-
-  start = 0.10
-  end = 3.00
-  step = 0.01
-  d_values = [round(start + i * step, 2) for i in range(int((end - start) / step) + 1)]
-
-  try:
-    for d_value in d_values:
-      StartTracing(experimentFile, tracing=True, decay=d_value, best_decayFile=[], fitting=True)
-  except Exception as e:
-    print(f"Error retrieving StartTracing for each decay: {e}") """
+  #runModelFitting(experimentFile)
 
   sys.exit()

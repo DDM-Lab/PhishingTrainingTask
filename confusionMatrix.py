@@ -284,8 +284,8 @@ if __name__ == "__main__":
 
         human_predicted =  np.array(PersonalizedData['user.choice.made.decision']).astype(str)
         model_predicted  = np.array(PersonalizedData['model.choice.made.decision']).astype(str)
-        plot_CM = GenerateConfusionMatrix(human_predicted , model_predicted ,'Human-Model',tracing, model_type, "Tracing_ConfusionMatrixes_2")
-        plot_LC = GenerateLearningCurves(PersonalizedData ,'Human-Model',tracing, model_type, "Tracing_LearningCurves_2")
+        plot_CM = GenerateConfusionMatrix(human_predicted , model_predicted ,'Human-Model',tracing, model_type, "Tracing_ConfusionMatrixes")
+        plot_LC = GenerateLearningCurves(PersonalizedData ,'Human-Model',tracing, model_type, "Tracing_LearningCurves")
 
         plotsStep1_CM.append(plot_CM)
         plotsStep1_LC.append(plot_LC)
@@ -299,8 +299,8 @@ if __name__ == "__main__":
         phishingHuman =  np.array(phishing_data['user.choice.made.decision']).astype(str)
         phishingModel = np.array(phishing_data['model.choice.made.decision']).astype(str)
 
-        plot_CM = GenerateConfusionMatrix(phishingHuman, phishingModel, 'Phishing', tracing, model_type, "Tracing_ConfusionMatrixes_2")
-        plot_LC = GenerateLearningCurves(phishing_data, 'Phishing', tracing, model_type, "Tracing_LearningCurves_2")
+        plot_CM = GenerateConfusionMatrix(phishingHuman, phishingModel, 'Phishing', tracing, model_type, "Tracing_ConfusionMatrixes")
+        plot_LC = GenerateLearningCurves(phishing_data, 'Phishing', tracing, model_type, "Tracing_LearningCurves")
 
         phishing_data['Trial.number']
         plotsStep2_CM.append(plot_CM)
@@ -311,8 +311,8 @@ if __name__ == "__main__":
         hamHuman =  np.array(ham_data['user.choice.made.decision']).astype(str)
         hamModel = np.array(ham_data['model.choice.made.decision']).astype(str)
 
-        plot_CM = GenerateConfusionMatrix(hamHuman, hamModel, 'Ham', tracing, model_type, "Tracing_ConfusionMatrixes_2")
-        plot_LC = GenerateLearningCurves(ham_data, 'Ham', tracing, model_type, "Tracing_LearningCurves_2")
+        plot_CM = GenerateConfusionMatrix(hamHuman, hamModel, 'Ham', tracing, model_type, "Tracing_ConfusionMatrixes")
+        plot_LC = GenerateLearningCurves(ham_data, 'Ham', tracing, model_type, "Tracing_LearningCurves")
         
         ham_data['Trial.number']
 
@@ -328,8 +328,8 @@ if __name__ == "__main__":
 
         human_predicted_P =  np.array(predictedData_P3_P['user.choice.made.decision']).astype(str)
         model_predicted_P  = np.array(predictedData_P3_P['model.choice.made.decision']).astype(str)
-        plot_CM = GenerateConfusionMatrix(human_predicted_P , model_predicted_P ,'Phishing Phase 3',tracing, model_type, "Tracing_ConfusionMatrixes_2")
-        plot_LC = GenerateLearningCurves(predictedData_P3_P ,'Phishing Phase 3',tracing, model_type, "Tracing_LearningCurves_2")
+        plot_CM = GenerateConfusionMatrix(human_predicted_P , model_predicted_P ,'Phishing Phase 3',tracing, model_type, "Tracing_ConfusionMatrixes")
+        plot_LC = GenerateLearningCurves(predictedData_P3_P ,'Phishing Phase 3',tracing, model_type, "Tracing_LearningCurves")
 
         plotsStep3_CM.append(plot_CM)
         plotsStep3_LC.append(plot_LC)
@@ -340,8 +340,8 @@ if __name__ == "__main__":
 
         human_predicted_H =  np.array(predictedData_P3_H['user.choice.made.decision']).astype(str)
         model_predicted_H  = np.array(predictedData_P3_H['model.choice.made.decision']).astype(str)
-        plot_CM = GenerateConfusionMatrix(human_predicted_H , model_predicted_H ,'Ham Phase 3',tracing, model_type, "Tracing_ConfusionMatrixes_2")
-        plot_LC = GenerateLearningCurves(predictedData_P3_H ,'Ham Phase 3',tracing, model_type, "Tracing_LearningCurves_2")
+        plot_CM = GenerateConfusionMatrix(human_predicted_H , model_predicted_H ,'Ham Phase 3',tracing, model_type, "Tracing_ConfusionMatrixes")
+        plot_LC = GenerateLearningCurves(predictedData_P3_H ,'Ham Phase 3',tracing, model_type, "Tracing_LearningCurves")
 
         plotsStep3_CM.append(plot_CM)
         plotsStep3_LC.append(plot_LC)
@@ -349,12 +349,12 @@ if __name__ == "__main__":
         
         #############################################################################################
             
-    CombinePlots(plotsStep1_CM, 1, 2, "Model-Human Syncronization", tracing, model_type, 'Human-Model', "Tracing_ConfusionMatrixes_2")
-    CombinePlots(plotsStep1_LC, 1, 2, "Model-Human Syncronization", tracing, model_type, 'Human-Model', "Tracing_LearningCurves_2")
-    CombinePlots(plotsStep2_CM, 2, 2, "Model-Human Syncronization split by GroundTruth", tracing, model_type, 'Split_GroundTruth', "Tracing_ConfusionMatrixes_2")
-    CombinePlots(plotsStep2_LC, 2, 2, "Model-Human Syncronization split by GroundTruth", tracing, model_type, 'Split_GroundTruth', "Tracing_LearningCurves_2")
-    CombinePlots(plotsStep3_CM, 2, 2, "Model-Human Syncronization Phase 3 split by GroundTruth", tracing, model_type, 'Split_GroundTruthP3', "Tracing_ConfusionMatrixes_2")
-    CombinePlots(plotsStep3_LC, 2, 2, "Model-Human Syncronization Phase 3 split by GroundTruth", tracing, model_type, 'Split_GroundTruthP3', "Tracing_LearningCurves_2")
+    CombinePlots(plotsStep1_CM, 1, 2, "Model-Human Syncronization", tracing, model_type, 'Human-Model', "Tracing_ConfusionMatrixes")
+    CombinePlots(plotsStep1_LC, 1, 2, "Model-Human Syncronization", tracing, model_type, 'Human-Model', "Tracing_LearningCurves")
+    CombinePlots(plotsStep2_CM, 2, 2, "Model-Human Syncronization split by GroundTruth", tracing, model_type, 'Split_GroundTruth', "Tracing_ConfusionMatrixes")
+    CombinePlots(plotsStep2_LC, 2, 2, "Model-Human Syncronization split by GroundTruth", tracing, model_type, 'Split_GroundTruth', "Tracing_LearningCurves")
+    CombinePlots(plotsStep3_CM, 2, 2, "Model-Human Syncronization Phase 3 split by GroundTruth", tracing, model_type, 'Split_GroundTruthP3', "Tracing_ConfusionMatrixes")
+    CombinePlots(plotsStep3_LC, 2, 2, "Model-Human Syncronization Phase 3 split by GroundTruth", tracing, model_type, 'Split_GroundTruthP3', "Tracing_LearningCurves")
 
         
     sys.exit()
