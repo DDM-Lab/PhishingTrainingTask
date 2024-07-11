@@ -16,11 +16,11 @@ The Instance-Base Learning (IBL) model used in this project was developed initia
 The emails dataset and the human experiment dataset are available on OSF: https://osf.io/r83ag/
 
 For this particular implementation we are using:
-    - PhisingDataset_HFES2019.csv
-    - experiment1-outcomefeedback.csv 
-    - DataInformation.txt (dictionary with variables information)
+- PhisingDataset_HFES2019.csv
+- experiment1-outcomefeedback.csv 
+- DataInformation.txt (dictionary with variables information)
 
-`max_decays_M1.csv` and `max_decays_M2.csv` were generated after running Model-Fitting for each model and they contain the best decay for each participant.
+`max_decays_M1.csv` and `max_decays_M2.csv` were generated after running Model-Fitting and the R script for each model and they contain the best decay for each participant.
 
 `similarity_matrix_emails_nli_large.csv`, `similarity_matrix_sender_nli_large.csv` and `similarity_matrix_subject_nli_large.csv` were generated for each of the features used in our IBL model using a pre-trained language model of Bidirectional Encoder Representation of Transformer (BERT). The development of these similarity calculations was done by [Palvi Aggarwal](https://github.com/palvi-12) and [Shova Kuikel](https://github.com/Shovaa).
 
@@ -34,29 +34,15 @@ For this particular implementation we are using:
     - To run `Model-Fitting`, search for the **__main__** function (at the end of the script), uncomment the function `runModelFitting`, and comment all the other functions.
         - These scripts will generate 291 IBL models each with a `decay value` in the range of `[0.1 - 3]` with increments of `0.01` for each participant data.
         - These scripts will generate automaticaly:
-            - The fitting results of all the models per participant and record it as `Tracing_Data_Fitting_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_Fitting_{ID}` on the root of the project. 
-            - The fitting metric (`SyncRate`) results per model for each participant and record it as `MaxSyncRate_Fitting_Data_{ID}.csv` in the folder `Generated_Models_Data` on the root of the project. 
+            - The **fitting results** of all the models per participant and record it as `Tracing_Data_Fitting_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_Fitting_{ID}` on the root of the project. 
+            - The **fitting metric (`SyncRate`) results** per model for each participant and record it as `MaxSyncRate_Fitting_Data_{ID}.csv` in the folder `Generated_Models_Data` on the root of the project. 
                 - `SyncRate` examines the synchronization between the model prediction and each human choice. We determined whether the model prediction was the same as the actual human action for each decision. If it was the same, the synchronization value for that decision was `1`; otherwise, it was `0`.
-                - We calculated the `SyncRate` average per participant for each IBL model (with a different decay value) for the total number of decisions each model in each training settings made. In the case of `Model1` the total of decisions is 50 (40 from Phase 2 and 10 from Phase 3). While in `Model2` the total of decisions is 10 (Phase 3 data).
+                - We calculated the `SyncRate` average per participant for each IBL model (with a different decay value) for the total number of decisions each model in each training settings made. In the case of `Model 1` the total of decisions is 50 (40 from training and 10 from post-training). While in `Model 2` the total of decisions is 10 (post-training data).
             - `{ID}` is replaced by `M1` or `M2` according to the training script selected.
 
     - To run `Model-Tracing` with personalized decay per participant you will need the file `max_decays_{ID}.csv` located in the `Data` folder. `{ID}` is replaced by `M1` or `M2` according to the training script selected.
         - Search for the **__main__** function (at the end of the script), uncomment the function `StartTracing` with the following parameters: `tracing=True`, `decay=0`, `best_decayFile=best_decay`, `fitting=False`, and comment all the other functions. `best_decay` will contain the `decay value` that best fit each participant data recorded in `max_decays_{ID}.csv` that is automatically generated after running the `Phishing.Rmd` script.
-
-
-
-
-
-
-
-
-
-
-
-
-        
         - These scripts will generate automaticaly the tracing results with models runing the best decay per participant and record it as `Tracing_Data_Personalized_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_{ID}` on the root of the project.
-
 
     **NOTE:**  For convenience the **__main__** function has comments regarding each setting and what parameters manipulations need to be run.
 
