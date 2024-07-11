@@ -31,7 +31,7 @@ For this particular implementation we are using:
 - `tracingModel1.py` and `tracingModel2.py` contain the implementation of the IBL models for **Model-Fitting** and **Model-Tracing**, each with a different training size. `Model 1` is trained with 10 emails from the pre-training phase and predicts the remaining 50 from the training and post-training phases. In contrast, `Model 2` is trained with 50 emails from the pre-training and training phases and predicts the last 10 from the post-training phase.
     - To run this code for each training model, you will need the files `experiment1-outcomefeedback.csv`, `similarity_matrix_emails_nli_large.csv`, `similarity_matrix_sender_nli_large.csv` and `similarity_matrix_subject_nli_large.csv` located in the `Data` folder.
     
-    - To run `Model-Fitting`, search for the **\_\_main\_\_** function (at the end of the script), uncomment the function `runModelFitting`, and comment all the other functions.
+    - To run `Model-Fitting`, search for the **\_\_main\_\_** function (at the end of the script), uncomment the function `**runModelFitting**`, and comment all the other functions.
         - These scripts will generate 291 IBL models each with a `decay value` in the range of `[0.1 - 3]` with increments of `0.01` for each participant data.
         - These scripts will generate automaticaly:
             - The **fitting results** of all the models per participant and record it as `Tracing_Data_Fitting_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_Fitting_{ID}` on the root of the project. 
@@ -41,7 +41,7 @@ For this particular implementation we are using:
             - `{ID}` is replaced by `M1` or `M2` according to the training script selected.
 
     - To run `Model-Tracing` with personalized decay per participant you will need the file `max_decays_{ID}.csv` located in the `Data` folder. `{ID}` is replaced by `M1` or `M2` according to the training script selected.
-        - Search for the **\_\_main\_\_** function (at the end of the script), uncomment the function `StartTracing` with the following parameters: `tracing=True`, `decay=0`, `best_decayFile=best_decay`, `fitting=False`, and comment all the other functions. `best_decay` will contain the `decay value` that best fit each participant data recorded in `max_decays_{ID}.csv` that is automatically generated after running the `Phishing.Rmd` script.
+        - Search for the **\_\_main\_\_** function (at the end of the script), uncomment the function `**StartTracing**` with the following parameters: `tracing=True`, `decay=0`, `best_decayFile=best_decay`, `fitting=False`, and comment all the other functions. `best_decay` will contain the `decay value` that best fit each participant data recorded in `max_decays_{ID}.csv` that is automatically generated after running the `**Phishing.Rmd**` script.
         - These scripts will generate automaticaly the tracing results with models runing the best decay per participant and record it as `Tracing_Data_Personalized_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_{ID}` on the root of the project.
 
     **NOTE:**  For convenience the **\_\_main\_\_** function has comments regarding each setting and what parameters manipulations need to be run.
