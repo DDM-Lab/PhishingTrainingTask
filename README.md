@@ -31,7 +31,7 @@ For this particular implementation we are using:
 - `tracingModel1.py` and `tracingModel2.py` contain the implementation of the IBL models for **Model-Fitting** and **Model-Tracing**, each with a different training size. `Model 1` is trained with 10 emails from the pre-training phase and predicts the remaining 50 from the training and post-training phases. In contrast, `Model 2` is trained with 50 emails from the pre-training and training phases and predicts the last 10 from the post-training phase.
     - To run this code for each training model, you will need the files `experiment1-outcomefeedback.csv`, `similarity_matrix_emails_nli_large.csv`, `similarity_matrix_sender_nli_large.csv` and `similarity_matrix_subject_nli_large.csv` located in the `Data` folder.
     
-    - To run `Model-Fitting`, search for the **\_\_main\_\_** function (at the end of the script), uncomment the function `**runModelFitting**`, and comment all the other functions.
+    - To run `Model-Fitting`, search for the **\_\_main\_\_** function (at the end of the script), uncomment the function **`runModelFitting`**, and comment all the other functions.
         - These scripts will generate 291 IBL models each with a `decay value` in the range of `[0.1 - 3]` with increments of `0.01` for each participant data.
         - These scripts will generate automaticaly:
             - The **fitting results** of all the models per participant and record it as `Tracing_Data_Fitting_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_Fitting_{ID}` on the root of the project. 
