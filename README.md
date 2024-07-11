@@ -36,8 +36,8 @@ For this particular implementation we are using:
         - These scripts will generate automaticaly:
             - The **fitting results** of all the models per participant and record it as `Tracing_Data_Fitting_{ID}.csv` in the folders `Generated_Models_Data\Tracing_Results_Fitting_{ID}` on the root of the project. 
             - The **fitting metric (`SyncRate`) results** per model for each participant and record it as `MaxSyncRate_Fitting_Data_{ID}.csv` in the folder `Generated_Models_Data` on the root of the project. 
-                - `SyncRate` examines the synchronization between the model prediction and each human choice. We determined whether the model prediction was the same as the actual human action for each decision. If it was the same, the synchronization value for that decision was `1`; otherwise, it was `0`.
-                - We calculated the `SyncRate` average per participant for each IBL model (with a different decay value) for the total number of decisions each model in each training settings made. In the case of `Model 1` the total of decisions is 50 (40 from training and 10 from post-training). While in `Model 2` the total of decisions is 10 (post-training data).
+                - `SyncRate` examines the synchronization between the model prediction and each human choice. We determined whether the model prediction was the same as the actual human action for each decision. If it was the same, the synchronization value for that decision was `1`; otherwise, it was `0`. 
+                - We calculated the `SyncRate` average per participant for each IBL model (with a different decay value) for the total number of decisions each model in each training settings made. In the case of `Model 1` the total of decisions is 50 (40 from training and 10 from post-training). While in `Model 2` the total of decisions is 10 (post-training data). If multiple models have the same `SyncRate`, the model with the highest decay is selected for that participant.
             - `{ID}` is replaced by `M1` or `M2` according to the training script selected.
 
     - To run `Model-Tracing` with personalized decay per participant you will need the file `max_decays_{ID}.csv` located in the `Data` folder. `{ID}` is replaced by `M1` or `M2` according to the training script selected.
@@ -51,6 +51,8 @@ For this particular implementation we are using:
     - This script will generate automatically images in the `PNG` format with confusion matrixes and learning curves of the `Model Predictions` and/or the `Human Choices` in different settings. These images will be automaticaly stored in a folder named `Plots_{path}\Individual` in the root of the project. `{path}` is replaced by either `Tracing_ConfusionMatrixes` or `Tracing_LearningCurves` depending on the settings analysed.
 
 - **`Phishing.Rmd`** is an `R` code script used to assess the best fitting decay for each participant based on the 291 Models generated.
+    - To run this script, you first must run the `tracingModel1.py` and `tracingModel2.py` with **`Model-Fitting`** and use the generated `MaxSyncRate_Fitting_Data_M1.csv` and `MaxSyncRate_Fitting_Data_M2.csv`files located in the folder `Generated_Models_Data`.
+    - This script will automatically generate the `max_decays_M1.csv` and `max_decays_M1.csv` in the same folder where the script is located (same files as the ones in the `Data` folder).
 
     **NOTE:** The `R script` was run in `Rstudio 2024.04.2+764` and needs an independent project. A copy of the files `MaxSyncRate_Fitting_Data_M1.csv` and `MaxSyncRate_Fitting_Data_M2.csv` needs to be added inside a folder named `Data\Phishing` in the root of the R project.
 
