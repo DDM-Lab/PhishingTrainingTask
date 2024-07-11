@@ -52,7 +52,7 @@ For this particular implementation we are using:
 
 - **`Phishing.Rmd`** is an `R` code script used to assess the best fitting decay for each participant based on the 291 Models generated.
     - To run this script, you first must run the `tracingModel1.py` and `tracingModel2.py` with **`Model-Fitting`** and use the generated `MaxSyncRate_Fitting_Data_M1.csv` and `MaxSyncRate_Fitting_Data_M2.csv`files located in the folder `Generated_Models_Data`.
-    - This script will automatically generate the `max_decays_M1.csv` and `max_decays_M2.csv` in the same folder where the script is located (same files as the ones in the `Data` folder).
+    - This script will automatically generate the `max_decays_M1.csv` and `max_decays_M2.csv` in the same folder where the script is located (for convenience we have added copies of these files in the `Data` folder).
 
     **NOTE:** The `R script` was run in `Rstudio 2024.04.2+764` and needs an independent project. A copy of the files `MaxSyncRate_Fitting_Data_M1.csv` and `MaxSyncRate_Fitting_Data_M2.csv` needs to be added inside a folder named `Data\Phishing` in the root of the R project. After running this script, the generated files need to be copied into the Python project in the `Data` folder.
 
