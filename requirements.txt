@@ -32,7 +32,7 @@ psutil==6.0.0
 pure-eval==0.2.2
 pyactup==2.2.3
 pyarrow==23.0.1
-Pygments==2.18.0
+Pygments==2.20.0
 pyibl==5.1.5
 pylru==1.2.1
 pyparsing==3.1.2
